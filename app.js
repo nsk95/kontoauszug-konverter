@@ -1,7 +1,7 @@
 import { extractLines } from './lib/pdftext.js';
 import { parseStatement } from './lib/parse.js';
 import { toCSV, toCAMT, toMT940, toDATEV, DATEV_DEFAULTS } from './lib/export.js';
-import { ledger } from './lib/license.js';
+import { quotaLedger } from './lib/quota-client.js';
 
 // pdf.js (~1.8 MB incl. worker) is fetched shortly after the page has loaded, off the critical
 // rendering path. Once it is there (body[data-pdf=ready]), reading a statement needs no request at all.
@@ -11,7 +11,7 @@ const loadPdf = () => (pdf ||= import('./vendor/pdf.min.mjs').then((pdfjs) => {
   const worker = new pdfjs.PDFWorker();
   return worker.promise.then(() => {
     document.body.dataset.pdf = 'ready';
-    document.getElementById('ready').textContent = 'Bereit: arbeitet ab jetzt auch offline';
+    document.getElementById('ready').textContent = 'Bereit: PDF-Verarbeitung lokal, neues Guthaben wird beim Export online geprüft';
     return { pdfjs, worker };
   });
 }));
@@ -20,7 +20,7 @@ else addEventListener('load', () => setTimeout(loadPdf, 800), { once: true });
 
 const $ = (s, el = document) => el.querySelector(s);
 const store = (() => { try { return window.localStorage; } catch { return { getItem: () => null, setItem() {} }; } })();
-const lic = ledger(store);
+const lic = quotaLedger(store);
 const money = (c) => (c / 100).toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
 const de = (iso) => (iso ? iso.split('-').reverse().join('.') : '–');
 
@@ -37,13 +37,23 @@ for (const input of document.querySelectorAll('[data-datev]')) {
 // ---------- licence ----------
 const showRemaining = () => { $('#remaining').textContent = Math.max(0, lic.remaining()); };
 showRemaining();
+if (lic.legacy) $('#quota-note').textContent = 'Ihr bereits eingelöstes Guthaben bleibt wie bisher offline in diesem Browser nutzbar.';
+const unlock = /^#freischalten=(.+)$/.exec(location.hash);
+if (unlock) {
+  history.replaceState(null, '', '#konverter');
+  try { $('#code').value = decodeURIComponent(unlock[1]); } catch { $('#code').value = ''; }
+  $('#code-panel').hidden = false;
+  document.querySelector('[aria-controls="code-panel"]').setAttribute('aria-expanded', 'true');
+  $('#code-panel').scrollIntoView();
+}
 $('#redeem').addEventListener('submit', async (e) => {
   e.preventDefault();
   const r = await lic.redeem($('#code').value);
-  $('#redeem-msg').textContent = r.ok ? `${r.pages} Seiten freigeschaltet.` : r.reason;
+  $('#redeem-msg').textContent = r.ok ? (r.remaining == null ? `${r.pages} Seiten freigeschaltet.` : `Guthaben geöffnet: ${r.remaining} Seiten verfügbar. Erneutes Einlösen desselben Codes füllt es nicht erneut auf.`) : r.reason;
   if (r.ok) $('#code').value = '';
   showRemaining();
 });
+if (unlock && $('#code').value) $('#redeem').requestSubmit();
 
 // ---------- panels (DATEV settings, unlock code) ----------
 for (const b of document.querySelectorAll('[aria-controls]')) {
@@ -128,18 +138,21 @@ function render(card, name, st, hash, example = false) {
     mt940: () => [toMT940(st), `${base}.sta`, 'text/plain'],
     datev: () => [toDATEV(st, datevOpt), `EXTF_Buchungsstapel_${base}.csv`, 'text/csv;charset=windows-1252'],
   };
-  card.addEventListener('click', (e) => {
+  let busy = false;
+  card.addEventListener('click', async (e) => {
     const fmt = e.target.dataset?.fmt;
-    if (!fmt) return;
+    if (!fmt || busy) return;
     const msg = $('.msg', card);
     if (!c.ok && (fmt === 'camt' || fmt === 'mt940')) {
       msg.textContent = 'CAMT und MT940 brauchen einen stimmigen Saldo. Bitte den Auszug prüfen.';
       return;
     }
     if (!c.ok && !confirm('Der Saldo stimmt nicht. Trotzdem exportieren?')) return;
+    busy = true;
+    for (const button of card.querySelectorAll('[data-fmt]')) button.disabled = true;
     try {
       const [data, file, type] = formats[fmt](); // build first: a failed export must not cost pages
-      if (!example && !lic.charge(hash, st.pages)) {
+      if (!example && !await lic.charge(hash, st.pages)) {
         msg.textContent = `Dieser Auszug hat ${st.pages} Seiten, Ihr Guthaben reicht noch für ${Math.max(0, lic.remaining())}. Ihre Vorschau bleibt erhalten. `;
         const offer = Object.assign(document.createElement('a'), { href: '#preise', textContent: '50 weitere Seiten für 9 € ansehen' });
         msg.append(offer);
@@ -151,7 +164,10 @@ function render(card, name, st, hash, example = false) {
       msg.textContent = `${file} gespeichert.`;
     } catch (err) {
       msg.textContent = err.message;
+    } finally {
+      busy = false;
+      for (const button of card.querySelectorAll('[data-fmt]')) button.disabled = false;
+      showRemaining();
     }
-    showRemaining();
   });
 }

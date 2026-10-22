@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- connect-src 'none': the browser itself blocks every fetch/XHR/WebSocket/beacon from this page. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<!-- Only the strictly validated quota endpoint may receive page-count metadata. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; worker-src 'self'; connect-src https://formundsystem.de/kk-api/; img-src 'self' data:; style-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Kontoauszug-PDF in CSV, Excel &amp; DATEV umwandeln – lokal im Browser</title>
 <meta name="description" content="PDF-Kontoauszüge in Sekunden in CSV (Excel), DATEV-Buchungsstapel, CAMT.053 und MT940 umwandeln – mit Saldoprüfung. Die Datei wird nur in Ihrem Browser verarbeitet, kein Upload. 3 Seiten gratis.">
@@ -120,6 +120,7 @@
           <p class="lockline"><svg aria-hidden="true"><use href="#i-lock"/></svg><span id="ready">Wird nur in diesem Browser verarbeitet</span></p>
           <div class="tool-foot">
             <p class="credit">Guthaben: <span id="remaining">–</span> Seiten</p>
+            <p class="small-note" id="quota-note">Demo und Vorschau bleiben vollständig lokal. Beim Export wird das Guthaben online geprüft: nur zufällige Kennung, Seitenzahl und Vorgangs-ID – keine Datei, Buchungsdaten oder Dateiprüfsumme. <a href="datenschutz.html">Mehr zum Datenschutz</a>.</p>
             <div class="toggles">
               <button type="button" class="disclose" aria-expanded="false" aria-controls="datev-panel">DATEV-Einstellungen</button>
               <button type="button" class="disclose" aria-expanded="false" aria-controls="code-panel">Freischaltcode</button>
@@ -157,7 +158,7 @@
         <div>
           <ul class="checks">
             <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><div><h3>Kein Upload, keine Speicherung</h3><p>Die PDF wird nur im Arbeitsspeicher Ihres Browsers gelesen. Schließen Sie den Tab, ist sie weg. Keine Cookies, keine Analyse, keine Werbung.</p></div></li>
-            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><div><h3>Auch ohne Internet weiterarbeiten</h3><p>Sobald der Konverter geladen ist, funktioniert die Umwandlung auch offline. Ihre PDF wird auf keinem unserer Server verarbeitet.</p></div></li>
+            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><div><h3>Vorschau auch ohne Internet</h3><p>Sobald der Konverter geladen ist, lesen und prüfen Sie Ihre PDF lokal. Für neue Exportbuchungen braucht die Guthabenverwaltung eine Verbindung.</p></div></li>
             <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-offline"/></svg></span><div><h3>Klare Trennung beim Kauf</h3><p>Nur wenn Sie zusätzliche Seiten kaufen, wechseln Sie zu Stripe. Ihr Kontoauszug wird dabei nicht an den Zahlungsdienst übergeben.</p></div></li>
             <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-code"/></svg></span><div><h3>Sie sehen das Ergebnis zuerst</h3><p>Prüfen Sie erkannte Buchungen und Salden, bevor Sie exportieren oder zusätzliche Seiten kaufen.</p></div></li>
           </ul>
@@ -166,7 +167,7 @@
           <div class="privacy-heading"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Ihr Rechner. Ihre Daten.</span></div>
           <div class="local-boundary"><span class="boundary-label">IN IHREM BROWSER</span><div class="local-flow"><span>PDF-Auszug</span><span aria-hidden="true">→</span><span>Prüfung</span><span aria-hidden="true">→</span><span>Export</span></div><p>Ihre Kontodaten verlassen diesen Bereich nicht.</p></div>
           <p class="privacy-foot"><svg aria-hidden="true"><use href="#i-lock"/></svg>Ihre PDF bleibt auf Ihrem Gerät</p>
-          <details class="technical-proof"><summary>Wie lässt sich das überprüfen?</summary><p>Eine Sicherheitsrichtlinie im Browser blockiert Datenverbindungen aus Skripten. Nach dem Laden funktioniert die Umwandlung auch offline.</p></details>
+          <details class="technical-proof"><summary>Wie lässt sich das überprüfen?</summary><p>Im Netzwerkprotokoll Ihres Browsers sehen Sie beim Einlesen keine Dateiübertragung. Beim Export gehen ausschließlich Seitenzahl und zufällige Kennungen an die Guthabenverwaltung. Die PDF und alle Buchungen bleiben auf Ihrem Gerät.</p></details>
         </aside>
       </div>
     </div>
@@ -251,11 +252,11 @@
           <p class="amount">50 <small>Seiten</small></p>
           <ul>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Einmalkauf, kein Abo</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Freischaltung per Code, weiterhin ohne Konto</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Code direkt nach bestätigter Zahlung, ohne Benutzerkonto</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Gleiche Funktionen, gleiche Privatsphäre</li>
           </ul>
           <a class="btn" href="https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00" rel="noopener">50 Seiten für 9 € kaufen</a>
-          <p class="fine">Endpreis, gemäß § 19 UStG ohne Umsatzsteuer. Bezahlung über Stripe, der Code kommt innerhalb von 24 Stunden per E-Mail. Es gelten die <a href="agb.html">AGB</a> und die <a href="widerruf.html">Widerrufsbelehrung</a>.</p>
+          <p class="fine">Endpreis, gemäß § 19 UStG ohne Umsatzsteuer. Bezahlung über Stripe. Nach bestätigter Zahlung erhalten Sie den Code auf der Danke-Seite und zusätzlich per E-Mail. Bei verzögerter Zahlung erst nach deren Bestätigung. Es gelten die <a href="agb.html">AGB</a> und die <a href="widerruf.html">Widerrufsbelehrung</a>.</p>
         </article>
       </div>
     </div>
@@ -270,7 +271,7 @@
       <div class="faq">
         <details>
           <summary>Wird mein Kontoauszug hochgeladen oder gespeichert?</summary>
-          <div><p>Nein. Die PDF wird ausschließlich im Arbeitsspeicher Ihres Browsers gelesen. Es gibt keinen Server, der Auszüge annimmt, und die Seite verbietet Datenverbindungen aus Skripten per Sicherheitsrichtlinie (<code>connect-src 'none'</code>). Im Browser gespeichert werden nur Ihr Seitenguthaben, Prüfsummen bereits bezahlter Dateien (nicht der Inhalt) und Ihre DATEV-Einstellungen.</p></div>
+          <div><p>Nein. Die PDF und die erkannten Buchungen werden ausschließlich auf Ihrem Gerät verarbeitet. Die Guthabenverwaltung erhält beim Export nur eine zufällige Kennung, die Seitenzahl und eine zufällige Vorgangs-ID. Datei, Dateiname, IBAN, Buchungen und Dateiprüfsumme werden nicht übertragen. Demo und Vorschau benötigen keine Guthabenverbindung. Mehr erfahren Sie im <a href="datenschutz.html">Datenschutz</a>.</p></div>
         </details>
         <details>
           <summary>Wie kann ich selbst prüfen, dass nichts übertragen wird?</summary>

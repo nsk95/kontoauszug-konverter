@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'none'; img-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src https://formundsystem.de/kk-api/; img-src 'self'; style-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="robots" content="noindex">
 <meta name="referrer" content="no-referrer">
 <!-- Success page of the Stripe Payment Link (LIVEGANG.md section 8). Not linked from the site. -->
@@ -11,19 +11,26 @@
 <link rel="icon" href="logo-mark.png" type="image/png">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="presentation.css">
+<script type="module" src="checkout.js"></script>
 </head>
 <body class="editorial subpage">
 <header class="top"><div class="wrap"><a class="brand" href="./"><img class="brand-mark" src="logo-mark.png" alt="" width="56" height="56"><span class="brand-copy"><strong>Kontoauszug</strong><small>Konverter</small></span></a></div></header>
 <main class="wrap doc">
 <h1>Danke für Ihren Kauf!</h1>
-<p>Ihr Freischaltcode für 50 Seiten kommt per E-Mail an die Adresse, die Sie beim Bezahlen angegeben haben. Das dauert normalerweise nur wenige Minuten, in der Startphase spätestens 24 Stunden.</p>
+<p id="payment-status" role="status">Ihr Freischaltcode für 50 Seiten kommt zusätzlich per E-Mail an die Adresse, die Sie beim Bezahlen angegeben haben. Das dauert normalerweise nur wenige Minuten, in der Startphase spätestens 24 Stunden. Öffnen Sie nach dem Kauf die Rückleitung von Stripe, um den Code sofort abzurufen.</p>
+<button id="check-payment" class="btn" type="button" hidden>Zahlungsstatus erneut prüfen</button>
+<section id="instant-unlock" hidden aria-label="Sofortfreischaltung">
+  <h2>Ihr Freischaltcode</h2>
+  <p><label for="instant-code">Zum Aufbewahren oder Kopieren</label><br><textarea id="instant-code" class="unlock-code" rows="4" readonly></textarea></p>
+  <p><a id="unlock-now" class="btn" href="./#konverter">Jetzt im Konverter einlösen</a></p>
+</section>
 <h2>So lösen Sie den Code ein</h2>
 <ol>
   <li>Öffnen Sie den <a href="./#konverter">Konverter</a>.</li>
   <li>Klicken Sie unter dem Ablagefeld auf „Freischaltcode“.</li>
   <li>Fügen Sie den Code ein (beginnt mit <code>KK1.</code>) und klicken Sie auf „Einlösen“.</li>
 </ol>
-<p>Das Guthaben gilt in dem Browser, in dem Sie den Code einlösen. Ihre Kontoauszüge werden weiterhin nur lokal verarbeitet.</p>
+<p>Neue Guthaben werden online verwaltet. Derselbe Code öffnet auch in einem anderen Browser das verbliebene Guthaben und füllt es nicht erneut auf. Bereits früher offline eingelöste Guthaben bleiben in ihrem bisherigen Browser erhalten. Ihre Kontoauszüge werden weiterhin nur lokal verarbeitet.</p>
 <p class="muted">Keine E-Mail erhalten? Bitte prüfen Sie den Spam-Ordner oder schreiben Sie an ifdmmibds@gmail.com (siehe <a href="impressum.html">Impressum</a>).</p>
 </main>
 <footer class="foot"><div class="wrap"><p><a href="./">Startseite</a> · <a href="impressum.html">Impressum</a> · <a href="datenschutz.html">Datenschutz</a> · <a href="agb.html">AGB</a> · <a href="widerruf.html">Widerrufsbelehrung</a></p></div></footer>

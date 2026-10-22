@@ -303,3 +303,5 @@ td:nth-child(-n+2) { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .marks a:hover { color: var(--brand); text-decoration: underline; }
 .doc .marks { margin: .4rem 0 1rem; }
 .foot .wrap > p:only-child { grid-column: 1 / -1; }
+[hidden] { display: none !important; }
+.unlock-code { box-sizing: border-box; width: 100%; max-width: 100%; padding: 1rem; border: 1px solid var(--line, #aab6ac); border-radius: .5rem; font: .85rem/1.6 monospace; overflow-wrap: anywhere; }
