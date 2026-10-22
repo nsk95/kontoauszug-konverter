@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kontoauszug-umwandeln.de/sitemap.xml
