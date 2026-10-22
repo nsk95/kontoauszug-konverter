@@ -83,6 +83,11 @@ $('#show-example')?.addEventListener('click', async (event) => {
     await handle([new File([bytes], 'Beispielauszug-erfundene-Daten.pdf', { type: 'application/pdf' })], true);
   } finally { button.disabled = false; }
 });
+// Search-intent guides can lead directly to a useful result without requesting a file.
+if (location.hash === '#beispiel') {
+  history.replaceState(null, '', '#konverter');
+  $('#show-example').click();
+}
 
 async function handle(files, example = false) {
   for (const file of files) {
