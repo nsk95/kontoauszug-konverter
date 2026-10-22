@@ -62,7 +62,19 @@ addEventListener('dragleave', (e) => { if (!e.relatedTarget) drop.classList.remo
 addEventListener('drop', (e) => { e.preventDefault(); drop.classList.remove('over'); handle([...e.dataTransfer.files]); });
 $('#file').addEventListener('change', (e) => { handle([...e.target.files]); e.target.value = ''; }); // copy: resetting value empties the FileList
 
-async function handle(files) {
+// The bundled fixture is synthetic and never spends the visitor's page allowance.
+$('#show-example')?.addEventListener('click', async (event) => {
+  const button = event.currentTarget;
+  if (button.disabled) return;
+  button.disabled = true;
+  try {
+    const { demoPDF } = await import('./lib/demo-pdf.js');
+    const bytes = Uint8Array.from(atob(demoPDF), c => c.charCodeAt(0));
+    await handle([new File([bytes], 'Beispielauszug-erfundene-Daten.pdf', { type: 'application/pdf' })], true);
+  } finally { button.disabled = false; }
+});
+
+async function handle(files, example = false) {
   for (const file of files) {
     const card = $('#card').content.firstElementChild.cloneNode(true);
     $('.name', card).textContent = file.name;
@@ -74,7 +86,7 @@ async function handle(files) {
       const hash = [...new Uint8Array(await crypto.subtle.digest('SHA-256', bytes))].map((b) => b.toString(16).padStart(2, '0')).join('');
       const { pdfjs, worker } = await loadPdf();
       const st = parseStatement(await extractLines(pdfjs, bytes.slice(), worker));
-      render(card, file.name, st, hash);
+      render(card, file.name, st, hash, example);
     } catch (err) {
       $('.meta', card).textContent = 'Datei konnte nicht gelesen werden.';
       showWarn(card, String(err.message || err));
@@ -84,7 +96,7 @@ async function handle(files) {
 
 function showWarn(card, text) { const w = $('.warn', card); w.textContent = text; w.hidden = !text; }
 
-function render(card, name, st, hash) {
+function render(card, name, st, hash, example = false) {
   const c = st.check;
   $('.meta', card).textContent = `${st.bank} · ${st.iban || 'IBAN unbekannt'} · ${de(st.from)} – ${de(st.to)} · ${st.rows.length} Umsätze · ${st.pages} Seite(n)`;
   const badge = $('.badge', card);
@@ -94,6 +106,7 @@ function render(card, name, st, hash) {
     ? `${money(st.opening.cents)} + ${money(c.sum)} = ${money(st.closing.cents)}`
     : c.diff != null ? `Erwartet ${money(c.expected)}, Auszug sagt ${money(st.closing.cents)}, Differenz ${money(c.diff)}` : c.reason;
   const warns = [...st.warnings];
+  if (example) warns.unshift('Beispiel mit erfundenen Daten. Auch der Download dieses Beispiels ist kostenlos und verbraucht keine Gratisseiten.');
   if (!c.ok) warns.unshift(c.diff != null
     ? `Anfangssaldo + Umsätze ergibt ${money(c.expected)}, der Auszug nennt ${money(st.closing.cents)} (Differenz ${money(c.diff)}). Vermutlich fehlt ein Umsatz oder wurde falsch gelesen.`
     : c.reason + '.');
@@ -126,8 +139,10 @@ function render(card, name, st, hash) {
     if (!c.ok && !confirm('Der Saldo stimmt nicht. Trotzdem exportieren?')) return;
     try {
       const [data, file, type] = formats[fmt](); // build first: a failed export must not cost pages
-      if (!lic.charge(hash, st.pages)) {
-        msg.textContent = `Für diesen Auszug fehlen Seiten (${st.pages} nötig, ${Math.max(0, lic.remaining())} übrig). Seitenpakete folgen in Kürze.`;
+      if (!example && !lic.charge(hash, st.pages)) {
+        msg.textContent = `Dieser Auszug hat ${st.pages} Seiten, Ihr Guthaben reicht noch für ${Math.max(0, lic.remaining())}. Ihre Vorschau bleibt erhalten. `;
+        const offer = Object.assign(document.createElement('a'), { href: '#preise', textContent: '50 weitere Seiten für 9 € ansehen' });
+        msg.append(offer);
         return;
       }
       const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([data], { type })), download: file });

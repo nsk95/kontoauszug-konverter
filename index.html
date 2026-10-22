@@ -22,16 +22,17 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Kontoauszug-Konverter: PDF-Kontoauszug wird lokal im Browser zur CSV-Tabelle, Saldo geprüft">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="logo-mark.png" type="image/png">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="fonts/inter-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="presentation.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Kontoauszug-Konverter","url":"https://kontoauszug-umwandeln.de/","applicationCategory":"FinanceApplication","operatingSystem":"Browser","inLanguage":"de","description":"PDF-Kontoauszüge lokal im Browser in CSV (Excel), DATEV-Format, CAMT.053 und MT940 umwandeln, mit Saldoprüfung. Kein Upload.","offers":[{"@type":"Offer","name":"Gratis: 3 Seiten","price":"0","priceCurrency":"EUR"},{"@type":"Offer","name":"Seitenpaket 50 Seiten","price":"9.00","priceCurrency":"EUR","url":"https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00"}],"publisher":{"@type":"Organization","name":"PlanKontor"}}</script>
 </head>
-<body>
+<body class="editorial">
 <svg class="sprite" aria-hidden="true" focusable="false">
-  <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#2346d8"/><path d="M10.5 7h7.4l5.1 5.1V23.5a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5v-15A1.5 1.5 0 0 1 10.5 7z" fill="#fff"/><path d="M17.9 7v4.3a.8.8 0 0 0 .8.8H23z" fill="#c3cdfb"/><rect x="11.8" y="14.6" width="8.4" height="1.9" rx=".95" fill="#2346d8"/><rect x="11.8" y="18" width="8.4" height="1.9" rx=".95" fill="#2346d8"/><rect x="11.8" y="21.4" width="5.2" height="1.9" rx=".95" fill="#16a35f"/></symbol>
+  <symbol id="logo" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#214f40"/><path d="M10.5 7h7.4l5.1 5.1V23.5a1.5 1.5 0 0 1-1.5 1.5H10.5A1.5 1.5 0 0 1 9 23.5v-15A1.5 1.5 0 0 1 10.5 7z" fill="#fff"/><path d="M17.9 7v4.3a.8.8 0 0 0 .8.8H23z" fill="#d3e4da"/><rect x="11.8" y="14.6" width="8.4" height="1.9" rx=".95" fill="#214f40"/><rect x="11.8" y="18" width="8.4" height="1.9" rx=".95" fill="#214f40"/><rect x="11.8" y="21.4" width="5.2" height="1.9" rx=".95" fill="#16a35f"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-checkc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M8 12.3l2.7 2.7L16.2 9.4"/></symbol>
   <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.2"/><path d="M8.3 10.5V7.8a3.7 3.7 0 0 1 7.4 0v2.7"/></symbol>
@@ -50,7 +51,7 @@
 <a class="skip" href="#konverter">Zum Konverter springen</a>
 <header class="top">
   <div class="wrap">
-    <a class="brand" href="./" aria-label="Kontoauszug-Konverter – Startseite"><svg aria-hidden="true"><use href="#logo"/></svg>Kontoauszug-Konverter</a>
+    <a class="brand" href="./" aria-label="Kontoauszug-Konverter – Startseite"><img class="brand-mark" src="logo-mark.png" alt="" width="56" height="56"><span class="brand-copy"><strong>Kontoauszug</strong><small>Konverter</small></span></a>
     <nav class="nav" aria-label="Hauptnavigation">
       <a href="#sicherheit">Sicherheit</a>
       <a href="#so-gehts">So geht’s</a>
@@ -63,21 +64,57 @@
 </header>
 
 <main>
-  <section class="hero" aria-labelledby="titel">
+  <section class="editorial-hero" aria-labelledby="titel">
     <div class="wrap">
-      <div class="hero-grid">
-        <div class="intro">
-          <span class="eyebrow"><span class="dot"><svg aria-hidden="true"><use href="#i-lock"/></svg></span>100 % lokal im Browser · kein Upload</span>
-          <h1 id="titel">Kontoauszug-PDF in Sekunden zu <em>CSV, Excel und DATEV</em>.</h1>
-          <p class="lead">Ziehen Sie den PDF-Auszug Ihrer Bank in das Feld. Die Umsätze werden <strong>direkt in Ihrem Browser</strong> ausgelesen und gegen den Saldo geprüft. Die Datei verlässt Ihren Rechner nicht, auch nicht zu uns.</p>
+      <div class="editorial-grid">
+        <div class="hero-copy">
+          <p class="overline"><span></span>Für Selbstständige &amp; Buchhaltung</p>
+          <h1 id="titel">Schluss mit<br>Kontoauszügen<br><em>zum Abtippen.</em></h1>
+          <p class="hero-summary">Der Auszug ist da. Die Tabelle fehlt. Machen Sie aus Ihren Bank-PDFs bearbeitbare Umsätze für Excel oder DATEV – mit Saldoprüfung und ohne Ihre Dateien hochzuladen.</p>
+          <div class="hero-actions"><a class="btn" href="#konverter">Auszug kostenlos umwandeln <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="text-action" type="button" id="show-example">Mit Beispiel testen <span aria-hidden="true">↗</span></button></div>
+          <p class="hero-assurance"><svg aria-hidden="true"><use href="#i-lock"/></svg>Kein Datei-Upload. Kein Konto. 3 Seiten gratis.</p>
         </div>
-
-        <div class="tool" id="konverter">
+        <figure class="document-scene" id="conversion-example" aria-labelledby="example-caption">
+          <div class="scene-topline"><span>VOM AUSZUG ZUM ÜBERBLICK</span><span class="scene-number">01 / 02</span></div>
+          <div class="document-stack">
+            <div class="statement-paper">
+              <div class="paper-top"><span class="paper-mark" aria-hidden="true">M</span><span>Musterbank<br><small>Beispieldaten · keine echten Kontodaten</small></span><span class="file-chip">PDF</span></div>
+              <p class="paper-title">Kontoauszug <span>10 / 2026</span></p>
+              <p class="paper-subtitle">Geschäftskonto · DE•• •••• •••• 4711</p>
+              <div class="paper-rule"></div>
+              <div class="paper-row"><span>Anfangssaldo</span><b>1.250,00 €</b></div>
+              <div class="paper-row"><span>01.10. · Stadtwerke</span><span>−84,00 €</span></div>
+              <div class="paper-row"><span>01.10. · Rechnung 0815</span><span>+2.400,00 €</span></div>
+              <div class="paper-row"><span>02.10. · Bürobedarf</span><span>−12,99 €</span></div>
+              <div class="paper-row"><span>05.10. · Büromiete</span><span>−950,00 €</span></div>
+              <div class="paper-total"><span>Endsaldo</span><b>2.603,01 €</b></div>
+            </div>
+            <div class="export-paper">
+              <div class="export-top"><span><svg aria-hidden="true"><use href="#i-table"/></svg> Umsätze · Oktober</span><span class="file-chip">CSV / DATEV</span></div>
+              <table aria-label="Beispiel für exportierte Umsätze"><thead><tr><th>Datum</th><th>Buchungstext</th><th class="num">Betrag</th></tr></thead><tbody>
+                <tr><td>01.10.</td><td>Stadtwerke</td><td class="num">−84,00</td></tr>
+                <tr><td>01.10.</td><td>Rechnung 0815</td><td class="num">+2.400,00</td></tr>
+                <tr><td>02.10.</td><td>Bürobedarf</td><td class="num">−12,99</td></tr>
+                <tr><td>05.10.</td><td>Büromiete</td><td class="num">−950,00</td></tr>
+              </tbody></table>
+              <p class="balance-proof"><svg aria-hidden="true"><use href="#i-checkc"/></svg><strong>Saldo abgeglichen</strong><span>0,00 € Differenz</span></p>
+            </div>
+          </div>
+          <figcaption id="example-caption"><span>PDF lesen → Saldo prüfen → exportieren</span><span>Illustration mit Beispieldaten</span></figcaption>
+        </figure>
+      </div>
+      <div class="compatibility"><span>VON IHREM KONTO<br>IN IHREN WORKFLOW</span><ul><li><a class="bank-logo ing" href="ing-kontoauszug-umwandeln.html"><img src="banks/ing.svg" alt="ING" width="90" height="30"></a></li><li><a class="bank-logo dkb" href="dkb-kontoauszug-umwandeln.html"><img src="banks/dkb.svg" alt="DKB" width="90" height="30"></a></li><li><a class="bank-logo n26" href="n26-kontoauszug-umwandeln.html"><img src="banks/n26.svg" alt="N26" width="90" height="30"></a></li><li><a class="bank-logo" href="sparkasse-kontoauszug-umwandeln.html"><img src="banks/sparkasse.svg" alt="Sparkasse" width="32" height="30"></a></li><li><a class="bank-logo" href="volksbank-raiffeisenbank-kontoauszug-umwandeln.html"><img src="banks/volksbank-raiffeisenbank.svg" alt="Volksbank/Raiffeisenbank" width="90" height="30"></a></li></ul><a href="#banken">alle 16 Banken ansehen <span aria-hidden="true">↗</span></a></div>
+    </div>
+  </section>
+  <section class="converter-section" id="konverter" aria-labelledby="converter-heading">
+    <div class="wrap workbench-grid">
+      <div class="workbench-copy"><p class="overline">IHR ARBEITSPLATZ</p><h2 id="converter-heading">Ihre Datei.<br>Ihr Ergebnis.</h2><p>Wählen Sie den PDF-Auszug aus Ihrem Onlinebanking. Sie sehen die erkannten Umsätze und die Saldoprüfung, bevor Sie exportieren.</p><ul class="workbench-list"><li><svg aria-hidden="true"><use href="#i-check"/></svg>CSV, DATEV, CAMT.053 &amp; MT940</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>Verarbeitung ausschließlich im Browser</li><li><svg aria-hidden="true"><use href="#i-check"/></svg>3 Exportseiten kostenlos ausprobieren</li></ul><p class="small-note">Am besten verwenden Sie die PDF direkt aus Ihrem Onlinebanking. <a href="#faq">Fragen zum Dateiformat?</a></p></div>
+        <div class="tool">
           <section class="drop" id="drop" aria-label="PDF-Kontoauszug ablegen">
             <span class="drop-icon"><svg aria-hidden="true"><use href="#i-upload"/></svg></span>
-            <p class="drop-title">PDF-Kontoauszug hierher ziehen</p>
+            <p class="drop-title">PDF hier ablegen</p>
             <p class="or">oder</p>
-            <label class="btn">Datei auswählen<input id="file" type="file" accept="application/pdf,.pdf" multiple hidden></label>
+            <button class="btn" id="choose-file" type="button">PDF auswählen <svg aria-hidden="true"><use href="#i-arrow"/></svg></button><input id="file" type="file" accept="application/pdf,.pdf" multiple hidden>
             <p class="hint">Mehrere Dateien auf einmal möglich. PDFs aus dem Onlinebanking (mit Textebene), keine eingescannten Papierauszüge.</p>
           </section>
           <p class="lockline"><svg aria-hidden="true"><use href="#i-lock"/></svg><span id="ready">Wird nur in diesem Browser verarbeitet</span></p>
@@ -106,17 +143,6 @@
           </div>
         </div>
         <div id="results" class="results" aria-live="polite"></div>
-          <ul class="ticks">
-            <li><svg aria-hidden="true"><use href="#i-checkc"/></svg>Saldoprüfung bei jedem Auszug: Fehlt ein Umsatz, sehen Sie es sofort.</li>
-            <li><svg aria-hidden="true"><use href="#i-checkc"/></svg>CSV für Excel, DATEV-Buchungsstapel, CAMT.053 und MT940</li>
-            <li><svg aria-hidden="true"><use href="#i-checkc"/></svg>3 Seiten gratis, ohne Konto und ohne Anmeldung</li>
-          </ul>
-      </div>
-      <div class="strip">
-        <span>Für Auszüge von</span>
-        <ul><li>Sparkasse</li><li>Volksbank</li><li>ING</li><li>DKB</li><li>Deutsche Bank</li><li>Commerzbank</li><li>N26</li><li>Trade Republic</li></ul>
-        <a href="#banken">alle 16 Banken</a>
-      </div>
     </div>
   </section>
 
@@ -125,26 +151,23 @@
       <div class="section-head">
         <span class="kicker">Datenschutz by Design</span>
         <h2 id="h-sicherheit">Ihre Kontoauszüge bleiben auf Ihrem Rechner.</h2>
-        <p>Viele Konverter laden Auszüge auf einen Server. Hier gibt es keinen Server, der sie annehmen könnte: Das Programm läuft komplett in Ihrem Browser.</p>
+        <p>Kontoumsätze sind vertraulich. Deshalb findet die gesamte Umwandlung auf Ihrem Gerät statt. Sie geben weder Ihre Bankzugangsdaten ein noch laden Sie Ihren Auszug auf einen Server.</p>
       </div>
       <div class="trust-grid">
         <div>
           <ul class="checks">
             <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-shield"/></svg></span><div><h3>Kein Upload, keine Speicherung</h3><p>Die PDF wird nur im Arbeitsspeicher Ihres Browsers gelesen. Schließen Sie den Tab, ist sie weg. Keine Cookies, keine Analyse, keine Werbung.</p></div></li>
-            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><div><h3>Vom Browser erzwungen, nicht nur versprochen</h3><p>Die Seite verbietet sich per Sicherheitsrichtlinie selbst jede Datenverbindung aus Skripten. Ihr Browser setzt das durch.</p></div></li>
-            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-offline"/></svg></span><div><h3>Selbst nachprüfbar</h3><p>Öffnen Sie mit F12 den Reiter „Netzwerk“: Beim Umwandeln erscheint keine Anfrage. Oder trennen Sie nach dem Laden das WLAN, die Umwandlung funktioniert weiter.</p></div></li>
-            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-code"/></svg></span><div><h3>Quelltext öffentlich</h3><p>Der komplette Code dieser Seite liegt so, wie er ausgeliefert wird, öffentlich auf <a href="https://github.com/nsk95/kontoauszug-konverter">GitHub</a>. Jede Zeile ist prüfbar.</p></div></li>
+            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-lock"/></svg></span><div><h3>Auch ohne Internet weiterarbeiten</h3><p>Sobald der Konverter geladen ist, funktioniert die Umwandlung auch offline. Ihre PDF wird auf keinem unserer Server verarbeitet.</p></div></li>
+            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-offline"/></svg></span><div><h3>Klare Trennung beim Kauf</h3><p>Nur wenn Sie zusätzliche Seiten kaufen, wechseln Sie zu Stripe. Ihr Kontoauszug wird dabei nicht an den Zahlungsdienst übergeben.</p></div></li>
+            <li><span class="icon ok"><svg aria-hidden="true"><use href="#i-code"/></svg></span><div><h3>Sie sehen das Ergebnis zuerst</h3><p>Prüfen Sie erkannte Buchungen und Salden, bevor Sie exportieren oder zusätzliche Seiten kaufen.</p></div></li>
           </ul>
         </div>
-        <div class="csp" role="figure" aria-label="Auszug aus dem Seitenkopf: Content-Security-Policy">
-          <div class="bar3" aria-hidden="true"><i></i><i></i><i></i></div>
-<pre><span class="k">&lt;meta http-equiv=</span>"Content-Security-Policy"
-<span class="k">      content=</span>"default-src 'self';
-        <span class="hl">connect-src 'none';</span>
-        form-action 'none'; …"&gt;</pre>
-          <p><b>connect-src 'none'</b> steht im Kopf jeder Seite. Damit blockiert Ihr Browser jeden Versuch eines Skripts, Daten zu senden: fetch, XHR, WebSocket, Beacon. <b>form-action 'none'</b> sperrt zusätzlich das Absenden von Formularen. Prüfen können Sie das mit „Seitenquelltext anzeigen“.</p>
-          <div class="netlog"><span>Automatischer Test: Netzwerkanfragen beim Umwandeln einer PDF</span><b>0</b></div>
-        </div>
+        <aside class="privacy-diagram" aria-label="Die Verarbeitung bleibt auf Ihrem Gerät">
+          <div class="privacy-heading"><svg aria-hidden="true"><use href="#i-shield"/></svg><span>Ihr Rechner. Ihre Daten.</span></div>
+          <div class="local-boundary"><span class="boundary-label">IN IHREM BROWSER</span><div class="local-flow"><span>PDF-Auszug</span><span aria-hidden="true">→</span><span>Prüfung</span><span aria-hidden="true">→</span><span>Export</span></div><p>Ihre Kontodaten verlassen diesen Bereich nicht.</p></div>
+          <p class="privacy-foot"><svg aria-hidden="true"><use href="#i-lock"/></svg>Ihre PDF bleibt auf Ihrem Gerät</p>
+          <details class="technical-proof"><summary>Wie lässt sich das überprüfen?</summary><p>Eine Sicherheitsrichtlinie im Browser blockiert Datenverbindungen aus Skripten. Nach dem Laden funktioniert die Umwandlung auch offline.</p></details>
+        </aside>
       </div>
     </div>
   </section>
@@ -157,79 +180,37 @@
       </div>
       <ol class="steps">
         <li class="step"><h3>PDF ablegen</h3><p>Laden Sie den Auszug wie gewohnt im Onlinebanking herunter und ziehen Sie ihn in das Feld. Mehrere Monate auf einmal sind kein Problem.</p></li>
-        <li class="step"><h3>Automatisch prüfen</h3><p>Jede Buchung wird gelesen, dann wird nachgerechnet: Anfangssaldo plus alle Umsätze muss den Endsaldo ergeben. Grün heißt vollständig, Rot zeigt die Differenz.</p></li>
+        <li class="step"><h3>Automatisch prüfen</h3><p>Jede Buchung wird gelesen, dann wird nachgerechnet: Anfangssaldo plus alle Umsätze muss den Endsaldo ergeben. Grün heißt rechnerisch ausgeglichen, Rot zeigt die Differenz. Bitte prüfen Sie auch die Buchungstexte.</p></li>
         <li class="step"><h3>Exportieren</h3><p>Wählen Sie das Format für Ihr Programm. Die Datei entsteht in Ihrem Browser und landet in Ihrem Download-Ordner.</p>
           <ul class="chips"><li>CSV (Excel)</li><li>DATEV EXTF</li><li>CAMT.053</li><li>MT940</li></ul></li>
       </ol>
 
-      <div class="section-head" id="beispiel">
-        <span class="kicker">Beispiel</span>
-        <h2>Vorher: PDF. Nachher: saubere Tabelle.</h2>
-        <p>So sieht ein Auszug vor und nach der Umwandlung aus. Alle Werte sind erfundene Beispieldaten.</p>
-      </div>
-      <div class="ba">
-        <figure>
-          <figcaption>PDF-Kontoauszug</figcaption>
-          <div class="paper" aria-label="Beispiel eines PDF-Kontoauszugs">
-            <div class="ph"><div><b>Musterbank</b><br><span class="pm">Girokonto · IBAN DE•• •••• •••• •••• 4711 00</span></div><div class="pm">Kontoauszug 10/2026<br>Blatt 1 von 1</div></div>
-            <table>
-              <thead><tr><th>Datum</th><th>Erläuterung</th><th class="num">Betrag EUR</th></tr></thead>
-              <tbody>
-                <tr><td></td><td>Kontostand am 30.09.2026</td><td class="num">1.250,00</td></tr>
-                <tr><td>01.10.</td><td>Lastschrift Stadtwerke Musterstadt<br><span class="pm">Abschlag Strom 10/2026</span></td><td class="num">-84,00</td></tr>
-                <tr><td>01.10.</td><td>Gutschrift Kunde Beispiel AG<br><span class="pm">RE-2026-0815</span></td><td class="num">2.400,00</td></tr>
-                <tr><td>02.10.</td><td>Kartenzahlung Bürobedarf Muster</td><td class="num">-12,99</td></tr>
-                <tr><td>05.10.</td><td>Dauerauftrag Hausverwaltung Probe KG<br><span class="pm">Miete Büro Oktober</span></td><td class="num">-950,00</td></tr>
-                <tr class="sum"><td></td><td>Kontostand am 31.10.2026</td><td class="num">2.603,01</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </figure>
-        <div class="arrow" aria-hidden="true"><span><svg><use href="#i-arrow"/></svg></span></div>
-        <figure>
-          <figcaption>Export, z. B. CSV in Excel</figcaption>
-          <div class="sheet">
-            <div class="tabs" aria-hidden="true"><span aria-current="true">auszug-10-2026.csv</span><span>DATEV</span><span>CAMT</span><span>MT940</span></div>
-            <div class="scroll">
-              <table>
-                <thead><tr><th>Buchungstag</th><th>Wertstellung</th><th>Buchungstext</th><th class="num">Betrag</th></tr></thead>
-                <tbody>
-                  <tr><td>01.10.2026</td><td>01.10.2026</td><td>Lastschrift Stadtwerke Musterstadt Abschlag Strom 10/2026</td><td class="num neg">-84,00</td></tr>
-                  <tr><td>01.10.2026</td><td>01.10.2026</td><td>Gutschrift Kunde Beispiel AG RE-2026-0815</td><td class="num">2.400,00</td></tr>
-                  <tr><td>02.10.2026</td><td>02.10.2026</td><td>Kartenzahlung Bürobedarf Muster</td><td class="num neg">-12,99</td></tr>
-                  <tr><td>05.10.2026</td><td>05.10.2026</td><td>Dauerauftrag Hausverwaltung Probe KG Miete Büro Oktober</td><td class="num neg">-950,00</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="foot"><span class="badge ok">Saldo stimmt</span><span class="num">1.250,00 € + 1.353,01 € = 2.603,01 €</span></div>
-          </div>
-        </figure>
-      </div>
     </div>
   </section>
 
   <section class="section alt" id="banken" aria-labelledby="h-banken">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="kicker">Banken</span>
-        <h2 id="h-banken">Für die Auszüge der großen deutschen Banken gebaut</h2>
-        <p>Wir sagen ehrlich, wie gut jede Bank getestet ist. Egal welche Bank: Die Saldoprüfung zeigt Ihnen bei jedem Auszug, ob alles erkannt wurde.</p>
-      </div>
-      <div class="tiers">
-        <article class="tier">
-          <header><span class="lvl real">Stufe 1</span><h3>Mit echten Auszügen getestet</h3><p>Echte Kontoauszüge geprüft: alle Buchungen erkannt, Saldo stimmt.</p></header>
-          <ul class="marks" data-tier="real"><li><a href="n26-kontoauszug-umwandeln.html">N26</a></li><li><a href="finom-kontoauszug-umwandeln.html">Finom</a></li></ul>
-        </article>
-        <article class="tier">
-          <header><span class="lvl syn">Stufe 2</span><h3>Unterstützt</h3><p>Eigenes Testlayout nach dem öffentlich dokumentierten Aufbau des Auszugs, alle Testfälle grün. Bei Sparkasse, DKB und Deutsche Bank auch das ältere bzw. neuere Layout.</p></header>
-          <ul class="marks" data-tier="syn"><li><a href="sparkasse-kontoauszug-umwandeln.html">Sparkasse</a></li><li><a href="volksbank-raiffeisenbank-kontoauszug-umwandeln.html">Volksbank/Raiffeisenbank</a></li><li><a href="deutsche-bank-kontoauszug-umwandeln.html">Deutsche Bank</a></li><li><a href="commerzbank-kontoauszug-umwandeln.html">Commerzbank</a></li><li><a href="postbank-kontoauszug-umwandeln.html">Postbank</a></li><li><a href="ing-kontoauszug-umwandeln.html">ING</a></li><li><a href="dkb-kontoauszug-umwandeln.html">DKB</a></li><li><a href="comdirect-kontoauszug-umwandeln.html">comdirect</a></li><li><a href="consorsbank-kontoauszug-umwandeln.html">Consorsbank</a></li><li><a href="targobank-kontoauszug-umwandeln.html">Targobank</a></li><li><a href="norisbank-kontoauszug-umwandeln.html">Norisbank</a></li><li><a href="1822direkt-kontoauszug-umwandeln.html">1822direkt</a></li><li><a href="c24-kontoauszug-umwandeln.html">C24</a></li><li><a href="trade-republic-kontoauszug-umwandeln.html">Trade Republic</a></li></ul>
-        </article>
-        <article class="tier">
-          <header><span class="lvl gen">Stufe 3</span><h3>Weitere Banken</h3></header>
-          <p>Auch Auszüge anderer Banken funktionieren oft: Der generische Modus erkennt Datum, Betrag, Soll/Haben und Salden ohne eigenes Bankprofil. Ob ein Auszug vollständig gelesen wurde, zeigt die Saldoprüfung sofort. Probieren Sie es mit den 3 Gratisseiten.</p>
-        </article>
-      </div>
-      <p class="fine">Testlayouts sind synthetische Nachbauten mit erfundenen Daten, keine Originalauszüge. Echte Auszüge können im Detail abweichen. Bankennamen dienen nur der Beschreibung der Kompatibilität; es besteht keine Verbindung zu den genannten Banken.</p>
+    <div class="wrap bank-browser">
+      <div class="section-head"><span class="kicker">Ihre Bank. Ihr Auszug.</span><h2 id="h-banken">Der kurze Weg zu Ihrer Tabelle.</h2><p>Wählen Sie Ihre Bank für Hinweise zum PDF-Export. Oder starten Sie direkt: Die Bank wird beim Einlesen automatisch erkannt.</p></div>
+      <div class="bank-grid">
+<a class="bank-option" href="n26-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem n26"><img src="banks/n26.svg" alt=""></span><span>N26</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="finom-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem finom"><img src="banks/finom.svg" alt=""></span><span>Finom</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="sparkasse-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem sparkasse"><img src="banks/sparkasse.svg" alt=""></span><span>Sparkasse</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="volksbank-raiffeisenbank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem volksbank-raiffeisenbank"><img src="banks/volksbank-raiffeisenbank.svg" alt=""></span><span>Volksbank/Raiffeisenbank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="deutsche-bank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem deutsche-bank"><img src="banks/deutsche-bank.svg" alt=""></span><span>Deutsche Bank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="commerzbank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem commerzbank"><img src="banks/commerzbank.svg" alt=""></span><span>Commerzbank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="postbank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem postbank"><img src="banks/postbank.svg" alt=""></span><span>Postbank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="ing-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem ing"><img src="banks/ing.svg" alt=""></span><span>ING</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="dkb-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem dkb"><img src="banks/dkb.svg" alt=""></span><span>DKB</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="comdirect-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem comdirect"><img src="banks/comdirect.jpg" alt=""></span><span>comdirect</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="consorsbank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem consorsbank"><img src="banks/consorsbank.jpg" alt=""></span><span>Consorsbank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="targobank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem targobank"><img src="banks/targobank.svg" alt=""></span><span>Targobank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="norisbank-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem norisbank"><img src="banks/norisbank.svg" alt=""></span><span>Norisbank</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="1822direkt-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem 1822direkt"><img src="banks/1822direkt.svg" alt=""></span><span>1822direkt</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="c24-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem c24"><img src="banks/c24.svg" alt=""></span><span>C24</span></span><span aria-hidden="true">↗</span></a>
+<a class="bank-option" href="trade-republic-kontoauszug-umwandeln.html"><span class="bank-identity"><span class="bank-emblem trade-republic"><img src="banks/trade-republic.svg" alt=""></span><span>Trade Republic</span></span><span aria-hidden="true">↗</span></a>
+</div>
+      <details class="bank-test-detail"><summary>Hinweise zur Erkennung und zum Teststand</summary><ul class="marks" data-tier="real"><li><a href="n26-kontoauszug-umwandeln.html">N26</a></li><li><a href="finom-kontoauszug-umwandeln.html">Finom</a></li></ul><ul class="marks" data-tier="syn"><li><a href="sparkasse-kontoauszug-umwandeln.html">Sparkasse</a></li><li><a href="volksbank-raiffeisenbank-kontoauszug-umwandeln.html">Volksbank/Raiffeisenbank</a></li><li><a href="deutsche-bank-kontoauszug-umwandeln.html">Deutsche Bank</a></li><li><a href="commerzbank-kontoauszug-umwandeln.html">Commerzbank</a></li><li><a href="postbank-kontoauszug-umwandeln.html">Postbank</a></li><li><a href="ing-kontoauszug-umwandeln.html">ING</a></li><li><a href="dkb-kontoauszug-umwandeln.html">DKB</a></li><li><a href="comdirect-kontoauszug-umwandeln.html">comdirect</a></li><li><a href="consorsbank-kontoauszug-umwandeln.html">Consorsbank</a></li><li><a href="targobank-kontoauszug-umwandeln.html">Targobank</a></li><li><a href="norisbank-kontoauszug-umwandeln.html">Norisbank</a></li><li><a href="1822direkt-kontoauszug-umwandeln.html">1822direkt</a></li><li><a href="c24-kontoauszug-umwandeln.html">C24</a></li><li><a href="trade-republic-kontoauszug-umwandeln.html">Trade Republic</a></li></ul><p>N26 und Finom sind mit echten Auszügen geprüft. Für die übrigen hier genannten Banken verwenden wir synthetische Testlayouts mit erfundenen Daten. Änderungen am Banklayout können die Erkennung beeinflussen. Prüfen Sie deshalb die Buchungen und den Saldo Ihres Auszugs vor der Weiterverwendung.</p><p>Auch andere Banken können über die allgemeine Erkennung funktionieren. Die kostenlose Vorschau zeigt Ihnen das Ergebnis für Ihre konkrete Datei.</p></details>
+      <p class="fine">Banknamen und Logos dienen der Zuordnung. Ein unabhängiges Werkzeug. Keine Partnerschaft mit den genannten Banken.</p>
     </div>
   </section>
 
@@ -241,7 +222,7 @@
       </div>
       <div class="cards">
         <article class="tile"><span class="icon"><svg aria-hidden="true"><use href="#i-user"/></svg></span><h3>Selbstständige &amp; Freelancer</h3><p>Einnahmen und Ausgaben für die EÜR in Excel sortieren oder als CSV in Lexware Office oder sevDesk übernehmen, auch für Konten ohne Online-Anbindung.</p></article>
-        <article class="tile"><span class="icon"><svg aria-hidden="true"><use href="#i-building"/></svg></span><h3>Buchhaltung im Unternehmen</h3><p>Ältere Auszüge nachbuchen, Lücken schließen, Konten ohne Schnittstelle importieren. Die Saldoprüfung zeigt, dass nichts fehlt.</p></article>
+        <article class="tile"><span class="icon"><svg aria-hidden="true"><use href="#i-building"/></svg></span><h3>Buchhaltung im Unternehmen</h3><p>Ältere Auszüge nachbuchen, Lücken schließen, Konten ohne Schnittstelle importieren. Die Saldoprüfung macht Differenzen sichtbar.</p></article>
         <article class="tile"><span class="icon"><svg aria-hidden="true"><use href="#i-case"/></svg></span><h3>Steuerberater &amp; Kanzleien</h3><p>Mandanten-PDFs direkt als DATEV-Buchungsstapel mit Berater- und Mandantennummer, ohne Abtippen. Auszugsdaten verlassen den Kanzlei-Rechner nicht.</p></article>
       </div>
     </div>
@@ -296,7 +277,6 @@
           <div><ol>
             <li>Entwicklerwerkzeuge öffnen (F12), Reiter „Netzwerk“ wählen und dann eine PDF ablegen: Es erscheint keine Anfrage.</li>
             <li>Oder nach dem Laden der Seite das Internet trennen: Die Umwandlung funktioniert weiter.</li>
-            <li>Den Quelltext finden Sie öffentlich auf <a href="https://github.com/nsk95/kontoauszug-konverter">GitHub</a>.</li>
           </ol></div>
         </details>
         <details>
@@ -353,12 +333,12 @@
 <footer class="foot">
   <div class="wrap">
     <div>
-      <a class="brand" href="./"><svg aria-hidden="true"><use href="#logo"/></svg>Kontoauszug-Konverter</a>
-      <p>PDF-Kontoauszüge lokal im Browser umwandeln. Ein Werkzeug von PlanKontor.</p>
+      <a class="brand" href="./"><img class="brand-mark" src="logo-mark.png" alt="" width="56" height="56"><span class="brand-copy"><strong>Kontoauszug</strong><small>Konverter</small></span></a>
+      <p>Entwickelt für einen sorgfältigen Umgang mit Ihren Finanzdaten.<br><a href="mailto:ifdmmibds@gmail.com">Kontakt &amp; Unterstützung ↗</a></p>
     </div>
     <div><h3>Produkt</h3><ul><li><a href="#konverter">Konverter</a></li><li><a href="#banken">Banken</a></li><li><a href="#preise">Preise</a></li><li><a href="#faq">FAQ</a></li></ul></div>
     <div><h3>Anleitungen</h3><ul><li><a href="kontoauszug-pdf-in-excel-csv.html">PDF in Excel (CSV)</a></li><li><a href="kontoauszug-pdf-in-datev.html">PDF ins DATEV-Format</a></li><li><a href="kontoauszug-pdf-in-camt053.html">PDF in CAMT.053</a></li><li><a href="kontoauszug-pdf-in-mt940.html">PDF in MT940</a></li><li><a href="kontoauszug-umwandeln-upload-oder-lokal.html">Upload oder lokal?</a></li><li><a href="vereinskasse-kontoauszug-in-excel.html">Vereinskasse</a></li></ul></div>
-    <div><h3>Transparenz</h3><ul><li><a href="https://github.com/nsk95/kontoauszug-konverter">Quelltext auf GitHub</a></li><li><a href="vendor/pdfjs-LICENSE.txt">Lizenz pdf.js</a></li><li><a href="fonts/Inter-OFL.txt">Lizenz Schrift Inter</a></li></ul></div>
+    <div><h3>Hinweise &amp; Lizenzen</h3><ul><li><a href="vendor/pdfjs-LICENSE.txt">Lizenz pdf.js</a></li><li><a href="fonts/Inter-OFL.txt">Lizenz Schrift Inter</a></li></ul></div>
     <div><h3>Rechtliches</h3><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="agb.html">AGB</a></li><li><a href="widerruf.html">Widerrufsbelehrung</a></li></ul></div>
   </div>
 </footer>
@@ -384,5 +364,6 @@
 </template>
 
 <script type="module" src="app.js"></script>
+<script type="module" src="presentation.js"></script>
 </body>
 </html>
