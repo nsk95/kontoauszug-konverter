@@ -260,3 +260,19 @@
 .bank-emblem.deutsche-bank { background: #0018a8; }
 .bank-emblem.c24 { background: #0a315c; }
 .bank-emblem.volksbank-raiffeisenbank, .compatibility .bank-logo:has(img[src="banks/volksbank-raiffeisenbank.svg"]) { background: #003c78; }
+
+/* User-initiated, locally hosted demonstration with an equivalent text path. */
+.demo-video { max-width: 880px; margin: 40px 0 0; }
+.demo-video h3 { margin-bottom: 10px; }
+.demo-video > p { max-width: 72ch; }
+.demo-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #101820; border-radius: 8px; }
+.demo-video figcaption { display: block; margin-top: 10px; font-size: .85rem; color: var(--muted); }
+.demo-video details { margin-top: 16px; }
+.demo-video summary { cursor: pointer; font-weight: 600; }
+.demo-video details ol { padding-left: 24px; max-width: 72ch; }
+.demo-video details li { margin-top: 10px; }
+.demo-video .demo-video-action { margin-top: 20px; }
+@media (max-width: 480px) {
+  .demo-video { margin-top: 28px; }
+  .demo-video .btn { white-space: normal; text-align: center; }
+}

@@ -73,7 +73,8 @@ addEventListener('drop', (e) => { e.preventDefault(); drop.classList.remove('ove
 $('#file').addEventListener('change', (e) => { handle([...e.target.files]); e.target.value = ''; }); // copy: resetting value empties the FileList
 
 // The bundled fixture is synthetic and never spends the visitor's page allowance.
-$('#show-example')?.addEventListener('click', async (event) => {
+for (const trigger of document.querySelectorAll('#show-example, [data-show-example]')) trigger.addEventListener('click', async (event) => {
+  event.preventDefault();
   const button = event.currentTarget;
   if (button.disabled) return;
   button.disabled = true;
@@ -81,6 +82,10 @@ $('#show-example')?.addEventListener('click', async (event) => {
     const { demoPDF } = await import('./lib/demo-pdf.js');
     const bytes = Uint8Array.from(atob(demoPDF), c => c.charCodeAt(0));
     await handle([new File([bytes], 'Beispielauszug-erfundene-Daten.pdf', { type: 'application/pdf' })], true);
+    if (button.hasAttribute('data-show-example')) {
+      history.replaceState(null, '', '#konverter');
+      $('#results').scrollIntoView({ block: 'start' });
+    }
   } finally { button.disabled = false; }
 });
 // Search-intent guides can lead directly to a useful result without requesting a file.
