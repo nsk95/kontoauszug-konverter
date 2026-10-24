@@ -276,3 +276,9 @@
   .demo-video { margin-top: 28px; }
   .demo-video .btn { white-space: normal; text-align: center; }
 }
+
+/* Keep the optional counter choice separate from quota and payment controls. */
+.usage-choice { margin: 1rem 0; padding: .8rem; border: 1px solid var(--line, #b8bec5); border-radius: .6rem; }
+.usage-choice label { display: flex; align-items: flex-start; gap: .65rem; font-size: .85rem; line-height: 1.5; }
+.usage-choice input[type="checkbox"] { flex: 0 0 auto; width: 1.1rem; height: 1.1rem; margin-top: .15rem; }
+.usage-choice p { margin: .5rem 0 0; }

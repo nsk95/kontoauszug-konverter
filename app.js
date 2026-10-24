@@ -1,3 +1,4 @@
+import { usageEvent } from './usage.js';
 import { extractLines } from './lib/pdftext.js';
 import { parseStatement } from './lib/parse.js';
 import { toCSV, toCAMT, toMT940, toDATEV, DATEV_DEFAULTS } from './lib/export.js';
@@ -107,6 +108,7 @@ async function handle(files, example = false) {
       const { pdfjs, worker } = await loadPdf();
       const st = parseStatement(await extractLines(pdfjs, bytes.slice(), worker));
       render(card, file.name, st, hash, example);
+      usageEvent(example ? 'demo_ready' : 'preview_ready');
     } catch (err) {
       $('.meta', card).textContent = 'Datei konnte nicht gelesen werden.';
       showWarn(card, String(err.message || err));
@@ -163,6 +165,7 @@ function render(card, name, st, hash, example = false) {
     try {
       const [data, file, type] = formats[fmt](); // build first: a failed export must not cost pages
       if (!example && !await lic.charge(hash, st.pages)) {
+        usageEvent('quota_blocked');
         msg.textContent = `Dieser Auszug hat ${st.pages} Seiten, Ihr Guthaben reicht noch für ${Math.max(0, lic.remaining())}. Ihre Vorschau bleibt erhalten. `;
         const offer = Object.assign(document.createElement('a'), { href: '#preise', textContent: '50 weitere Seiten für 9 € ansehen' });
         msg.append(offer);
@@ -170,6 +173,7 @@ function render(card, name, st, hash, example = false) {
       }
       const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([data], { type })), download: file });
       a.click();
+      usageEvent(example ? 'demo_export_saved' : 'export_saved');
       setTimeout(() => URL.revokeObjectURL(a.href), 1000);
       msg.textContent = `${file} gespeichert.`;
     } catch (err) {
