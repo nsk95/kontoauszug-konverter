@@ -19,8 +19,13 @@ export function usageEvent(event) {
     signal: AbortSignal.timeout(3000), keepalive: true,
   }).catch(() => {}); // Counting must never delay or block conversion or checkout.
 }
+const STRIPE_LINK = 'https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00';
+// Ad attribution without tracking: a source tag in the landing URL (e.g. ?quelle=gads-{keyword}) only travels
+// to Stripe as client_reference_id when the buyer clicks, so paid sessions show their origin. Nothing is stored.
+const source = (new URLSearchParams(location.search).get('quelle') || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 64).replace(/^-+|-+$/g, '');
+if (source) for (const a of document.querySelectorAll(`a[href="${STRIPE_LINK}"]`)) a.href = `${STRIPE_LINK}?client_reference_id=${source}`;
 document.addEventListener('click', e => {
   const link = e.target.closest('a[href]');
-  if (link?.href === 'https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00') usageEvent('checkout_click');
+  if (link && link.origin + link.pathname === STRIPE_LINK) usageEvent('checkout_click');
 });
 document.querySelector('video')?.addEventListener('play', () => usageEvent('video_play'));
