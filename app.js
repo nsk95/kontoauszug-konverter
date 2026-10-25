@@ -56,6 +56,36 @@ $('#redeem').addEventListener('submit', async (e) => {
 });
 if (unlock && $('#code').value) $('#redeem').requestSubmit();
 
+// ---------- purchase offer ----------
+// Static buy links already carry the sanitized source tag (usage.js); dynamic offers copy that exact href.
+const buyHref = () => document.querySelector('a[data-buy]').getAttribute('href');
+const buyLink = (text) => Object.assign(document.createElement('a'), { className: 'btn small', href: buyHref(), rel: 'noopener', textContent: text });
+const sticky = $('#buy-sticky');
+const offersInView = new Set();
+let stickyWanted = false;
+const updateSticky = () => {
+  sticky.hidden = !stickyWanted || offersInView.size > 0; // phones only (CSS); never on top of a visible offer
+  document.body.classList.toggle('has-buy-sticky', !sticky.hidden);
+};
+if ('IntersectionObserver' in window) {
+  const watch = new IntersectionObserver((entries) => {
+    for (const e of entries) e.isIntersecting ? offersInView.add(e.target) : offersInView.delete(e.target);
+    updateSticky();
+  });
+  for (const el of document.querySelectorAll('#preise .plan.main, .buy-row')) watch.observe(el);
+}
+function offerAfterResult(card) {
+  stickyWanted = true;
+  updateSticky();
+  if (document.querySelector('.card .next-step')) return; // one calm offer, not one per file
+  const box = Object.assign(document.createElement('div'), { className: 'next-step' });
+  const text = document.createElement('p');
+  text.append(Object.assign(document.createElement('strong'), { textContent: 'Ergebnis passt? 3 Seiten exportieren Sie gratis.' }),
+    Object.assign(document.createElement('span'), { textContent: 'Für weitere Auszüge: 50 Seiten für 9 €, Einmalkauf, Guthaben direkt nach der Zahlung.' }));
+  box.append(text, buyLink('50 Seiten für 9 € kaufen'));
+  $('.msg', card).after(box);
+}
+
 // ---------- panels (DATEV settings, unlock code) ----------
 for (const b of document.querySelectorAll('[aria-controls]')) {
   b.addEventListener('click', () => {
@@ -108,6 +138,7 @@ async function handle(files, example = false) {
       const { pdfjs, worker } = await loadPdf();
       const st = parseStatement(await extractLines(pdfjs, bytes.slice(), worker));
       render(card, file.name, st, hash, example);
+      offerAfterResult(card);
       usageEvent(example ? 'demo_ready' : 'preview_ready');
     } catch (err) {
       $('.meta', card).textContent = 'Datei konnte nicht gelesen werden.';
@@ -167,8 +198,7 @@ function render(card, name, st, hash, example = false) {
       if (!example && !await lic.charge(hash, st.pages)) {
         usageEvent('quota_blocked');
         msg.textContent = `Dieser Auszug hat ${st.pages} Seiten, Ihr Guthaben reicht noch für ${Math.max(0, lic.remaining())}. Ihre Vorschau bleibt erhalten. `;
-        const offer = Object.assign(document.createElement('a'), { href: '#preise', textContent: '50 weitere Seiten für 9 € ansehen' });
-        msg.append(offer);
+        msg.append(buyLink('50 weitere Seiten für 9 € kaufen'));
         return;
       }
       const a = Object.assign(document.createElement('a'), { href: URL.createObjectURL(new Blob([data], { type })), download: file });

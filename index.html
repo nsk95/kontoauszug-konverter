@@ -73,6 +73,7 @@
           <p class="hero-summary">Der Auszug ist da. Die Tabelle fehlt. Machen Sie aus Ihren Bank-PDFs bearbeitbare Umsätze für Excel oder DATEV – mit Saldoprüfung und ohne Ihre Dateien hochzuladen.</p>
           <div class="hero-actions"><a class="btn" href="#konverter">Auszug kostenlos umwandeln <svg aria-hidden="true"><use href="#i-arrow"/></svg></a><button class="text-action" type="button" id="show-example">Mit Beispiel testen <span aria-hidden="true">↗</span></button></div>
           <p class="hero-assurance"><svg aria-hidden="true"><use href="#i-lock"/></svg>Kein Datei-Upload. Kein Konto. 3 Seiten gratis.</p>
+          <p class="hero-price">Mehr Seiten? <a data-buy href="https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00" rel="noopener">50 Seiten für 9 €</a> <span>· 18 Cent pro Seite · Einmalkauf, kein Abo</span></p>
         </div>
         <figure class="document-scene" id="conversion-example" aria-labelledby="example-caption">
           <div class="scene-topline"><span>VOM AUSZUG ZUM ÜBERBLICK</span><span class="scene-number">01 / 02</span></div>
@@ -120,6 +121,10 @@
           <p class="lockline"><svg aria-hidden="true"><use href="#i-lock"/></svg><span id="ready">Wird nur in diesem Browser verarbeitet</span></p>
           <div class="tool-foot">
             <p class="credit">Guthaben: <span id="remaining">–</span> Seiten</p>
+            <div class="buy-row">
+              <p><strong>50 Seiten für 9 €</strong><span>Einmalkauf · Code sofort nach Zahlung · sichere Zahlung über Stripe</span></p>
+              <a class="btn small" data-buy href="https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00" rel="noopener">Seiten kaufen</a>
+            </div>
             <p class="small-note" id="quota-note">Demo und Vorschau bleiben vollständig lokal. Beim Export wird das Guthaben online geprüft: nur zufällige Kennung, Seitenzahl und Vorgangs-ID – keine Datei, Buchungsdaten oder Dateiprüfsumme. <a href="datenschutz.html">Mehr zum Datenschutz</a>.</p>
             <div class="usage-choice">
               <label><input type="checkbox" id="usage-consent" aria-describedby="usage-description"> Freiwillige Nutzungszählung für diesen Seitenaufruf erlauben</label>
@@ -261,7 +266,7 @@
         <p>Kein Abo, kein Konto. Sie zahlen nur für Seiten, die Sie exportieren. Dieselbe Datei erneut zu exportieren kostet nichts.</p>
       </div>
       <div class="prices">
-        <article class="plan main">
+        <article class="plan">
           <p class="name">Gratis</p>
           <p class="amount">3 <small>Seiten</small></p>
           <ul>
@@ -269,17 +274,23 @@
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Saldoprüfung bei jedem Auszug</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Ohne Konto, ohne Anmeldung, ohne E-Mail</li>
           </ul>
-          <a class="btn" href="#konverter">Jetzt kostenlos umwandeln</a>
+          <a class="btn ghost" href="#konverter">Jetzt kostenlos umwandeln</a>
         </article>
-        <article class="plan">
-          <p class="name">Seitenpaket · 9 €</p>
-          <p class="amount">50 <small>Seiten</small></p>
+        <article class="plan main">
+          <p class="name">Seitenpaket <span class="tag">Einmalkauf</span></p>
+          <p class="amount">9 € <small>für 50 Seiten</small></p>
+          <p class="per-page">18 Cent pro Seite statt Abtippen von Hand.</p>
           <ul>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Einmalkauf, kein Abo</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Code direkt nach bestätigter Zahlung, ohne Benutzerkonto</li>
             <li><svg aria-hidden="true"><use href="#i-check"/></svg>Gleiche Funktionen, gleiche Privatsphäre</li>
           </ul>
-          <a class="btn" href="https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00" rel="noopener">50 Seiten für 9 € kaufen</a>
+          <a class="btn" data-buy href="https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00" rel="noopener">50 Seiten für 9 € kaufen <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <ul class="trust" aria-label="Sicherheit beim Kauf">
+            <li><svg aria-hidden="true"><use href="#i-lock"/></svg>Sichere Zahlung über Stripe</li>
+            <li><svg aria-hidden="true"><use href="#i-shield"/></svg>Ihre Auszüge werden weder hochgeladen noch gespeichert</li>
+            <li><svg aria-hidden="true"><use href="#i-checkc"/></svg>Guthaben direkt nach der Zahlung gutgeschrieben</li>
+          </ul>
           <p class="fine">Endpreis, gemäß § 19 UStG ohne Umsatzsteuer. Bezahlung über Stripe. Nach bestätigter Zahlung erhalten Sie den Code auf der Danke-Seite und zusätzlich per E-Mail. Bei verzögerter Zahlung erst nach deren Bestätigung. Es gelten die <a href="agb.html">AGB</a> und die <a href="widerruf.html">Widerrufsbelehrung</a>.</p>
         </article>
       </div>
@@ -367,6 +378,11 @@
     <div><h3>Rechtliches</h3><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li><li><a href="agb.html">AGB</a></li><li><a href="widerruf.html">Widerrufsbelehrung</a></li></ul></div>
   </div>
 </footer>
+
+<div class="buy-sticky" id="buy-sticky" hidden>
+  <p><strong>50 Seiten · 9 €</strong><span>Einmalkauf, kein Abo</span></p>
+  <a class="btn small" data-buy href="https://buy.stripe.com/9B614ncLv4lL7bl3RqgnK00" rel="noopener">Seiten kaufen</a>
+</div>
 
 <template id="card">
   <article class="card">
